@@ -1,3 +1,6 @@
+import "server-only";
+
+
 import { int, bigint,text, index, singlestoreTableCreator } from "drizzle-orm/singlestore-core";
 
 
