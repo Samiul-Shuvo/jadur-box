@@ -16,11 +16,11 @@ export default {
   schema: "./src/server/db/schema.ts",
   dialect: "singlestore",
   dbCredentials: {
-    host: process.env.SINGLESTORE_HOST, // ✅ No need for "!"
-    port: parseInt(process.env.SINGLESTORE_PORT), // ✅ No need for "!"
+    host: process.env.SINGLESTORE_HOST, 
+    port: parseInt(process.env.SINGLESTORE_PORT),
     user: process.env.SINGLESTORE_USER,
     password: process.env.SINGLESTORE_PASS,
     database: process.env.SINGLESTORE_DB_NAME,
-    ssl: {}, // Adjust SSL settings if needed
+    ssl: {}, 
   },
 } satisfies Config;
