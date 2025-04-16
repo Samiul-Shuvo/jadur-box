@@ -1,5 +1,3 @@
-import { files as filesSchema, folders as foldersSchema} from "~/server/db/schema";
-import DriveContents from "./drive-contents";
 import { db } from "~/server/db";
 
 
