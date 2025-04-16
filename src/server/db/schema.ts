@@ -7,7 +7,7 @@ import { int, bigint,text, index, singlestoreTableCreator } from "drizzle-orm/si
 export const createTable = singlestoreTableCreator(
   (name) => `jadur-box_${name}`,
 );
-export const files  = createTable("files_table", 
+export const files_table  = createTable("files_table", 
   {
     id: bigint("id", { mode: "number", unsigned: true }).primaryKey().autoincrement(), 
     name: text("name").notNull(),
@@ -20,7 +20,7 @@ export const files  = createTable("files_table",
   ];
 });
 
-export const folders  = createTable("folders_table", 
+export const folders_table  = createTable("folders_table", 
   {
     id: bigint("id", { mode: "number", unsigned: true }).primaryKey().autoincrement(), 
     name: text("name").notNull(),
