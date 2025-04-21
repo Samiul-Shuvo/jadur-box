@@ -12,8 +12,9 @@
  - [ ] Add Analytics
  
 ## TODAY Task 
-Today time 1:58=>
+Today time 2:32=>
 
+ - [] Add ownership to files and folders 
  - [] Real Homepage
  - [] Upload files to right folder
  - [] Delete files button 

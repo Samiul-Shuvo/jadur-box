@@ -20,6 +20,8 @@ export default function DriveContents(props: {
   files: (typeof files_table.$inferSelect)[];
   folders: (typeof folders_table.$inferSelect)[];
   parents: (typeof folders_table.$inferSelect)[];
+
+  currentFolderId : number;
 }) {
   const navigate = useRouter();
 
@@ -33,7 +35,7 @@ export default function DriveContents(props: {
         <div className="flex justify-between items-center mb-6">
           <div className="flex items-center">
             <Link
-              href="/f/1"
+              href="/f/0"
               className="text-gray-300 hover:text-white mr-2"
             >
               My Drive
@@ -76,10 +78,15 @@ export default function DriveContents(props: {
             ))}
           </ul>
         </div>
+
         <UploadButton endpoint="imageUploader" onClientUploadComplete={()=>{
-          navigate.refresh();
-        }} />
+            navigate.refresh();
+          }} 
+          input={
+          {  folderId : props.currentFolderId}
+          }
+        />
       </div>
     </div>
-  );
+  )
 }

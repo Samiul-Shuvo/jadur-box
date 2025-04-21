@@ -35,8 +35,16 @@ export const QUERIES = {
           currentId = folder[0]?.parent;
         }
         return parents;
-      }
-}
+      },
+      getFolderById: async function (folderId:number) {
+        const folder = await db
+        .select()
+        .from(foldersSchema)
+        .where(eq(foldersSchema.id, folderId));
+
+        return folder[0];
+      },
+};
 
 
 
@@ -56,7 +64,7 @@ export const MUTATIONS = {
      return await db.insert(filesSchema).values({
       
       ...input.file,
-    parent:input.file.parent,
+    ownerId:input.userId,
     });
 
 //       parent :input.file.parent,});
