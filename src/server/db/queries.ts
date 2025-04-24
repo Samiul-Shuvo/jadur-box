@@ -3,19 +3,22 @@ import "server-only";
 
 import { files_table as filesSchema, folders_table as foldersSchema} from "~/server/db/schema";
 import { db } from "~/server/db";
-import { eq } from "drizzle-orm";
+import { asc, eq } from "drizzle-orm";
 
 export const QUERIES = {
    
     getFolders : function (folderId:number){
           return  db.select()
           .from(foldersSchema)
-          .where(eq(foldersSchema.parent, folderId));
+          .where(eq(foldersSchema.parent, folderId))
+          .orderBy(asc(foldersSchema.id));;
     },
     getFiles: function (folderId:number){
-          return  db.select()
+          return  db
+          .select()
           .from(filesSchema)
-          .where(eq(filesSchema.parent, folderId));
+          .where(eq(filesSchema.parent, folderId))
+          .orderBy(asc(filesSchema.id));
     } ,
     getAllParentsForFolder: async function (folderId: number){
         const parents = [];
