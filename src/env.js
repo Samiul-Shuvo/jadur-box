@@ -11,13 +11,12 @@ export const env = createEnv({
     NODE_ENV: z
       .enum(["development", "test", "production"])
       .default("development"),
-      // DATABASE_URL: z.string().url(),
-      // NODE_ENV: z.enum(["development", "test", "production"]).default("development"),
-      SINGLESTORE_USER: z.string(),
-      SINGLESTORE_PASS: z.string(),
-      SINGLESTORE_HOST: z.string(),
-      SINGLESTORE_PORT: z.string(), // Ensure it's a string
-      SINGLESTORE_DB_NAME: z.string(),
+
+    SINGLESTORE_USER: z.string(),
+    SINGLESTORE_PASS: z.string(),
+    SINGLESTORE_HOST: z.string(),
+    SINGLESTORE_PORT: z.string(),
+    SINGLESTORE_DB_NAME: z.string(),
   },
 
   /**
@@ -27,15 +26,14 @@ export const env = createEnv({
    */
   client: {
     // NEXT_PUBLIC_CLIENTVAR: z.string(),
-    NEXT_PUBLIC_POSTHOG_KEY:z.string(),
-   
+    NEXT_PUBLIC_POSTHOG_KEY: z.string(),
   },
 
   /**
    * You can't destruct `process.env` as a regular object in the Next.js edge runtimes (e.g.
    * middlewares) or client-side so we need to destruct manually.
    */
-runtimeEnv: {
+  runtimeEnv: {
     DATABASE_URL: process.env.DATABASE_URL,
     NODE_ENV: process.env.NODE_ENV,
     SINGLESTORE_USER: process.env.SINGLESTORE_USER,
@@ -43,6 +41,7 @@ runtimeEnv: {
     SINGLESTORE_HOST: process.env.SINGLESTORE_HOST,
     SINGLESTORE_PORT: process.env.SINGLESTORE_PORT,
     SINGLESTORE_DB_NAME: process.env.SINGLESTORE_DB_NAME,
+
     NEXT_PUBLIC_POSTHOG_KEY: process.env.NEXT_PUBLIC_POSTHOG_KEY,
   },
   /**

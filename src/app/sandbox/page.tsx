@@ -45,7 +45,6 @@ export default async function Sandbox() {
         }}
       >
         <button type="submit">Create file</button>
-        
       </form>
     </div>
   );

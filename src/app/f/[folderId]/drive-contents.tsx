@@ -14,19 +14,18 @@ export default function DriveContents(props: {
   folders: (typeof folders_table.$inferSelect)[];
   parents: (typeof folders_table.$inferSelect)[];
 
-  currentFolderId: number;
+  currentFolderId: number;    
 }) {
   const navigate = useRouter();
-
   const posthog = usePostHog();
 
   return (
-    <div className="min-h-screen bg-gray-900 p-8 text-gray-100">
+    <div className="min-h-screen bg-gradient-to-br from-[#1f1c2c] via-[#302b63] to-[#24243e] p-8 text-white">
       <div className="mx-auto max-w-6xl">
         <div className="mb-6 flex items-center justify-between">
           <div className="flex items-center">
-            <Link href="/f/0" className="mr-2 text-gray-300 hover:text-white">
-              My Drive
+            <Link href="/f/2251799813685249" className="mr-2 text-gray-300 hover:text-white">
+              Jadur Box
             </Link>
             {props.parents.map((folder, index) => (
               <div key={folder.id} className="flex items-center">
@@ -42,14 +41,15 @@ export default function DriveContents(props: {
           </div>
           <div>
             <SignedOut>
-              <SignInButton />
+              <SignInButton mode="modal" />
             </SignedOut>
             <SignedIn>
               <UserButton />
             </SignedIn>
           </div>
         </div>
-        <div className="rounded-lg bg-gray-800 shadow-xl">
+
+        <div className="rounded-lg bg-gradient-to-br from-[#302b63] to-[#1f1c2c] shadow-xl">
           <div className="border-b border-gray-700 px-6 py-4">
             <div className="grid grid-cols-12 gap-4 text-sm font-medium text-gray-400">
               <div className="col-span-6">Name</div>
@@ -58,7 +58,7 @@ export default function DriveContents(props: {
               <div className="col-span-1"></div>
             </div>
           </div>
-          <ul>
+          <ul className="divide-y divide-gray-700">
             {props.folders.map((folder) => (
               <FolderRow key={folder.id} folder={folder} />
             ))}
@@ -67,22 +67,24 @@ export default function DriveContents(props: {
             ))}
           </ul>
         </div>
-        <UploadButton
-          endpoint="driveUploader"
-          onBeforeUploadBegin={(files) => {
-            posthog.capture("files_uploading", {
-              fileCount: files.length,
-            });
 
-            return files;
-          }}
-          onClientUploadComplete={() => {
-            navigate.refresh();
-          }}
-          input={{
-            folderId: props.currentFolderId,
-          }}
-        />
+        <div className="mt-6 flex justify-center">
+          <UploadButton
+            endpoint="driveUploader"
+            onBeforeUploadBegin={(files) => {
+              posthog.capture("files_uploading", {
+                fileCount: files.length,
+              });
+              return files;
+            }}
+            onClientUploadComplete={() => {
+              navigate.refresh();
+            }}
+            input={{
+              folderId: props.currentFolderId,
+            }}
+          />
+        </div>
       </div>
     </div>
   );
