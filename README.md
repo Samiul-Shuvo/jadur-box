@@ -45,13 +45,6 @@ Live On:  https://jadur-box.netlify.app/
 
 ---
 
-## 📸 Screenshots
-
-<!-- Replace with your own screenshots -->
-| Landing Page | Dashboard View |
-|--------------|----------------|
-| ![Landing](./public/landing1.png) | ![Dashboard](./public/landing2.png) |
-
 ---
 
 ## 📂 Project Structure
