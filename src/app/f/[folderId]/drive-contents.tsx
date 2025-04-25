@@ -1,6 +1,6 @@
 "use client";
 
-import { Upload, ChevronRight } from "lucide-react";
+import { Upload, ChevronRight, CloudUpload } from "lucide-react";
 import { FileRow, FolderRow } from "./file-row";
 import type { files_table, folders_table } from "~/server/db/schema";
 import Link from "next/link";
@@ -24,9 +24,11 @@ export default function DriveContents(props: {
       <div className="mx-auto max-w-6xl">
         <div className="mb-6 flex items-center justify-between">
           <div className="flex items-center">
-            <Link href="/f/2251799813685249" className="mr-2 text-gray-300 hover:text-white">
-              Jadur Box
-            </Link>
+          <div className="flex items-center gap-2 mr-2 text-gray-300 hover:text-white">
+  
+  <span className="ml-2 font-serif">Jadur Box </span>
+  <CloudUpload className="h-6 w-6 text-indigo-400" />
+</div>
             {props.parents.map((folder, index) => (
               <div key={folder.id} className="flex items-center">
                 <ChevronRight className="mx-2 text-gray-500" size={16} />

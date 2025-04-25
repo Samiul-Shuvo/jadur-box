@@ -58,7 +58,6 @@ export const QUERIES = {
     return folder[0];
   },
 };
-
 export const MUTATIONS = {
   createFile: async function (input: {
     file: {
@@ -76,6 +75,7 @@ export const MUTATIONS = {
   },
 
   onboardUser: async function (userId: string) {
+    // Create the root folder for the user
     const rootFolder = await db
       .insert(foldersSchema)
       .values({
@@ -87,14 +87,15 @@ export const MUTATIONS = {
 
     const rootFolderId = rootFolder[0]!.id;
 
+    // Insert the "Documents", "Images", "Work" folders under the root
     await db.insert(foldersSchema).values([
       {
-        name: "Trash",
+        name: "Images",
         parent: rootFolderId,
         ownerId: userId,
       },
       {
-        name: "Shared",
+        name: "Work",
         parent: rootFolderId,
         ownerId: userId,
       },
@@ -104,6 +105,27 @@ export const MUTATIONS = {
         ownerId: userId,
       },
     ]);
+
+    // Fetch the ID of the "Documents" folder to set as parent for "Presentations"
+    const documentsFolder = await db
+      .select()
+      .from(foldersSchema)
+      .where(and(eq(foldersSchema.name, "Documents"), eq(foldersSchema.parent, rootFolderId)))
+      .limit(1)
+      .execute();
+
+    const documentsFolderId = documentsFolder[0]?.id;
+
+    if (documentsFolderId) {
+      // Insert the "Presentations" folder under "Documents"
+      await db.insert(foldersSchema).values({
+        name: "Presentations",
+        parent: documentsFolderId, // Set "Documents" folder as the parent
+        ownerId: userId,
+      });
+    } else {
+      throw new Error("Documents folder not found");
+    }
 
     return rootFolderId;
   },
