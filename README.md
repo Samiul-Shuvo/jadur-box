@@ -50,8 +50,7 @@ Live On:  https://jadur-box.netlify.app/
 <!-- Replace with your own screenshots -->
 | Landing Page | Dashboard View |
 |--------------|----------------|
-| ![Landing](./public/screenshot-landing.png) | ![Dashboard](./public/landin1.png) |
-| ![Landing](./public/screenshot-landing.png) | ![Dashboard](./public/landin2.png) |
+| ![Landing](./public/landing1.png) | ![Dashboard](./public/landing2.png) |
 
 ---
 
